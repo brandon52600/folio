@@ -1,0 +1,22 @@
+import { readdir, readFile, writeFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
+const base = process.env.BASE_PATH || '/';
+if (!/^\/(?:[a-zA-Z0-9_.-]+\/)*$/.test(base)) throw new Error('BASE_PATH must be / or /repository-name/');
+const paths = await readdir('dist', {recursive:true});
+const files = paths.filter(p => p !== 'sw.js' && /\.(html|js|css|svg|png|webmanifest)$/.test(p)).sort();
+const hash = createHash('sha256');
+for (const f of files) hash.update(f).update(await readFile(`dist/${f}`));
+const version = hash.digest('hex').slice(0,12);
+const prefix = 'folio-v2-' + base.replaceAll('/', '_') + '-';
+const csp = "default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'";
+const html = await readFile('dist/index.html','utf8');
+await writeFile('dist/index.html',html.replace('<head>',`<head><meta http-equiv="Content-Security-Policy" content="${csp}">`));
+await writeFile('dist/sw.js', `const BASE=${JSON.stringify(base)}, PREFIX=${JSON.stringify(prefix)}, CACHE=PREFIX+${JSON.stringify(version)};
+const FILES=${JSON.stringify(files.map(f=>base+f))};
+self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(FILES)).then(()=>caches.keys()).then(keys=>{if(BASE==='/'&&keys.some(k=>k.startsWith('folio-shell-')))return self.skipWaiting();})));
+self.addEventListener('message',e=>{if(e.data?.type==='SKIP_WAITING')self.skipWaiting();});
+self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>(k.startsWith(PREFIX)||(BASE==='/'&&k.startsWith('folio-shell-')))&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
+self.addEventListener('fetch',e=>{const u=new URL(e.request.url);if(e.request.method!=='GET'||u.origin!==self.location.origin)return;
+if(e.request.mode==='navigate'&&u.pathname.startsWith(BASE)){e.respondWith(caches.open(CACHE).then(c=>c.match(BASE+'index.html')).then(r=>r||fetch(e.request)));return;}
+if(FILES.includes(u.pathname))e.respondWith(caches.open(CACHE).then(c=>c.match(u.pathname)).then(r=>r||fetch(e.request)));
+});`);
