@@ -1,0 +1,322 @@
+Template,Specialty,Pain outline,HPI fields
+"Family medicine - general visit","Family medicine","conditional",50
+"Internal medicine - general visit","Internal medicine","conditional",50
+"Emergency medicine - general visit","Emergency medicine","conditional",50
+"General practice - general visit","General practice","conditional",50
+"Cardiology - general visit","Cardiology","conditional",50
+"Pulmonology - general visit","Pulmonology","conditional",50
+"General surgery - general visit","General surgery","conditional",50
+"Gastroenterology - general visit","Gastroenterology","conditional",50
+"Neurology - general visit","Neurology","conditional",50
+"Orthopedics - general visit","Orthopedics","conditional",50
+"Rheumatology - general visit","Rheumatology","conditional",50
+"Nephrology - general visit","Nephrology","conditional",50
+"Urology - general visit","Urology","conditional",50
+"Obstetrics & gynecology - general visit","Obstetrics & gynecology","conditional",50
+"Endocrinology - general visit","Endocrinology","conditional",50
+"Dermatology - general visit","Dermatology","conditional",50
+"Otolaryngology - general visit","Otolaryngology","conditional",50
+"Ophthalmology - general visit","Ophthalmology","conditional",50
+"Psychiatry - general visit","Psychiatry","conditional",52
+"Pediatrics - general visit","Pediatrics","conditional",50
+"Hematology - general visit","Hematology","conditional",50
+"General & constitutional assessment","general","conditional",50
+"General cardiovascular assessment","cardio","conditional",50
+"General respiratory assessment","resp","conditional",50
+"General gastrointestinal assessment","gi","conditional",50
+"General neurologic assessment","neuro","conditional",50
+"General musculoskeletal assessment","msk","conditional",50
+"General renal & urinary assessment","renal","conditional",50
+"General reproductive & obstetric assessment","repro","conditional",50
+"General endocrine & metabolic assessment","endo","conditional",50
+"General skin & dermatologic assessment","skin","conditional",50
+"General ear, nose & throat assessment","ent","conditional",50
+"General eye & visual assessment","eye","conditional",50
+"General mental health assessment","psych","conditional",52
+"General pediatric assessment","peds","conditional",50
+"General hematologic & lymphatic assessment","heme","conditional",50
+"Fever","general","conditional",53
+"Fatigue","general","conditional",49
+"Unintentional weight loss","general","conditional",49
+"Night sweats","general","conditional",51
+"Chest pain","cardio","primary",49
+"Palpitations","cardio","conditional",49
+"Syncope","cardio","conditional",49
+"Leg swelling","cardio","conditional",51
+"Cough","resp","conditional",51
+"Shortness of breath","resp","conditional",52
+"Wheezing","resp","conditional",50
+"Hemoptysis","resp","conditional",49
+"Abdominal pain","gi","primary",49
+"Nausea & vomiting","gi","conditional",53
+"Diarrhea","gi","conditional",53
+"Constipation","gi","conditional",49
+"Headache","neuro","primary",49
+"Dizziness / vertigo","neuro","conditional",49
+"Weakness","neuro","conditional",49
+"Numbness / tingling","neuro","conditional",49
+"Low back pain","msk","primary",49
+"Knee pain","msk","primary",49
+"Shoulder pain","msk","primary",49
+"Multiple joint pain","msk","primary",49
+"Painful urination","renal","primary",49
+"Blood in urine","renal","conditional",50
+"Flank pain","renal","primary",49
+"Urinary frequency","renal","conditional",49
+"Pelvic pain","repro","primary",49
+"Abnormal vaginal bleeding","repro","conditional",49
+"Vaginal discharge","repro","conditional",49
+"Missed period / pregnancy concern","repro","conditional",49
+"Excessive thirst / urination","endo","conditional",49
+"Heat intolerance","endo","none",40
+"Cold intolerance","endo","none",41
+"Weight gain","endo","none",40
+"Rash","skin","conditional",51
+"Pruritus","skin","conditional",49
+"Changing skin lesion","skin","conditional",49
+"Skin redness / swelling","skin","conditional",50
+"Sore throat","ent","primary",50
+"Ear pain","ent","primary",49
+"Nasal congestion / sinus pressure","ent","primary",49
+"Hearing loss / tinnitus","ent","conditional",49
+"Red eye","eye","conditional",49
+"Vision loss / blurred vision","eye","conditional",49
+"Eye pain","eye","primary",49
+"Double vision","eye","conditional",49
+"Low mood","psych","none",43
+"Anxiety / panic","psych","none",43
+"Insomnia","psych","none",43
+"Hallucinations / unusual beliefs","psych","none",43
+"Child with fever","peds","conditional",52
+"Child with cough / wheeze","peds","conditional",51
+"Child with vomiting / diarrhea","peds","conditional",53
+"Child with rash","peds","conditional",50
+"Easy bruising / bleeding","heme","conditional",49
+"Enlarged lymph node","heme","conditional",52
+"Pallor / anemia concern","heme","conditional",49
+"Recurrent infections","heme","conditional",50
+"Dehydration / poor intake","general","conditional",49
+"Elevated blood pressure","cardio","conditional",49
+"Sleep apnea concern","resp","conditional",49
+"Heartburn / reflux","gi","primary",50
+"Seizure / seizure-like episode","neuro","conditional",49
+"Neck pain","msk","primary",49
+"Urinary incontinence","renal","conditional",49
+"Breast lump / breast pain","repro","primary",49
+"Diabetes follow-up","endo","conditional",49
+"Acne","skin","conditional",49
+"Epistaxis","ent","conditional",49
+"Flashes / floaters","eye","conditional",49
+"Memory / cognitive concern","psych","none",43
+"Poor growth / weight gain","peds","none",40
+"Anticoagulant follow-up / bleeding concern","heme","conditional",49
+"Seasonal allergy symptoms","Family medicine","none",38
+"Medication side effects","Family medicine","conditional",47
+"Recurrent falls","Family medicine","conditional",47
+"Muscle cramps","Family medicine","primary",47
+"Snoring","Family medicine","conditional",47
+"Bloating / excess gas","Family medicine","conditional",47
+"Heel pain","Family medicine","primary",47
+"Hair shedding","Family medicine","none",38
+"Painful mouth sores","Family medicine","primary",47
+"Excessive daytime sleepiness","Family medicine","conditional",47
+"Seasonal allergy symptoms","Internal medicine","none",38
+"Medication side effects","Internal medicine","conditional",47
+"Recurrent falls","Internal medicine","conditional",47
+"Muscle cramps","Internal medicine","primary",47
+"Snoring","Internal medicine","conditional",47
+"Bloating / excess gas","Internal medicine","conditional",47
+"Heel pain","Internal medicine","primary",47
+"Hair shedding","Internal medicine","none",38
+"Painful mouth sores","Internal medicine","primary",47
+"Excessive daytime sleepiness","Internal medicine","conditional",47
+"Minor head injury","Emergency medicine","conditional",48
+"Laceration / open wound","Emergency medicine","primary",48
+"Ankle injury","Emergency medicine","primary",48
+"Allergic reaction / hives","Emergency medicine","conditional",47
+"Acute dental pain","Emergency medicine","primary",47
+"Foreign body in skin","Emergency medicine","primary",48
+"Burn injury","Emergency medicine","primary",48
+"Alcohol intoxication concern","Emergency medicine","conditional",50
+"Acute back strain","Emergency medicine","primary",48
+"Painful skin abscess","Emergency medicine","primary",47
+"Seasonal allergy symptoms","General practice","none",38
+"Medication side effects","General practice","conditional",47
+"Recurrent falls","General practice","conditional",47
+"Muscle cramps","General practice","primary",47
+"Snoring","General practice","conditional",47
+"Bloating / excess gas","General practice","conditional",47
+"Heel pain","General practice","primary",47
+"Hair shedding","General practice","none",38
+"Painful mouth sores","General practice","primary",47
+"Excessive daytime sleepiness","General practice","conditional",47
+"Breathlessness on exertion","Cardiology","conditional",47
+"Low blood pressure / lightheadedness","Cardiology","conditional",47
+"Slow heart rate","Cardiology","conditional",47
+"Fast heart rate","Cardiology","conditional",47
+"Irregular pulse alert","Cardiology","conditional",47
+"Heart murmur concern","Cardiology","conditional",47
+"Leg pain with walking","Cardiology","primary",47
+"Rapid weight gain / fluid retention","Cardiology","conditional",47
+"Dizziness on standing","Cardiology","conditional",47
+"Reduced exercise tolerance","Cardiology","conditional",47
+"Asthma symptom flare","Pulmonology","conditional",47
+"COPD symptom worsening","Pulmonology","conditional",48
+"Persistent sputum production","Pulmonology","conditional",47
+"Pain with breathing","Pulmonology","primary",47
+"Low oxygen reading","Pulmonology","conditional",47
+"Recurrent chest infections","Pulmonology","conditional",48
+"Lung nodule consultation","Pulmonology","conditional",48
+"Abnormal chest imaging","Pulmonology","conditional",48
+"CPAP intolerance","Pulmonology","conditional",47
+"Cough after meals","Pulmonology","conditional",48
+"Groin bulge","General surgery","conditional",47
+"Umbilical bulge","General surgery","conditional",47
+"Right upper abdominal pain","General surgery","primary",47
+"Painful hemorrhoid concern","General surgery","primary",47
+"Pilonidal pain / drainage","General surgery","primary",47
+"Soft tissue lump","General surgery","conditional",47
+"Postoperative wound concern","General surgery","conditional",48
+"Incisional bulge","General surgery","conditional",47
+"Gallstone consultation","General surgery","conditional",47
+"Recurrent perianal drainage","General surgery","conditional",47
+"Difficulty swallowing","Gastroenterology","conditional",47
+"Rectal bleeding","Gastroenterology","conditional",47
+"Black stools","Gastroenterology","conditional",47
+"Upper abdominal discomfort","Gastroenterology","primary",47
+"Yellow skin / eyes","Gastroenterology","conditional",49
+"Elevated liver enzymes","Gastroenterology","conditional",47
+"Early fullness after eating","Gastroenterology","conditional",47
+"Fecal urgency / leakage","Gastroenterology","conditional",47
+"Recurrent lower abdominal cramping","Gastroenterology","primary",47
+"Anal pain","Gastroenterology","primary",47
+"Tremor","Neurology","none",38
+"Balance difficulty","Neurology","conditional",47
+"Facial weakness","Neurology","conditional",47
+"Burning feet","Neurology","primary",48
+"Radiating leg pain","Neurology","primary",47
+"Transient neurologic episode","Neurology","conditional",47
+"Hand clumsiness","Neurology","conditional",47
+"Muscle twitching","Neurology","conditional",47
+"Post-concussion symptoms","Neurology","conditional",47
+"Restless legs","Neurology","conditional",47
+"Hip pain","Orthopedics","primary",47
+"Elbow pain","Orthopedics","primary",47
+"Wrist pain","Orthopedics","primary",47
+"Ankle pain","Orthopedics","primary",47
+"Foot pain","Orthopedics","primary",47
+"Finger locking","Orthopedics","conditional",47
+"Hand numbness at night","Orthopedics","conditional",47
+"Achilles pain","Orthopedics","primary",47
+"Traumatic joint swelling","Orthopedics","primary",48
+"Painful knee replacement","Orthopedics","primary",47
+"Morning joint stiffness","Rheumatology","conditional",47
+"Painful swollen toe","Rheumatology","primary",47
+"Cold-induced finger color change","Rheumatology","conditional",47
+"Dry eyes and mouth","Rheumatology","conditional",47
+"Widespread body pain","Rheumatology","primary",47
+"Proximal stiffness","Rheumatology","conditional",47
+"Psoriasis with joint symptoms","Rheumatology","conditional",47
+"Inflammatory back stiffness","Rheumatology","conditional",47
+"Positive autoimmune test concern","Rheumatology","conditional",47
+"Osteoporosis / fragility fracture concern","Rheumatology","conditional",47
+"Reduced kidney function result","Nephrology","conditional",47
+"Protein in urine","Nephrology","conditional",47
+"Foamy urine","Nephrology","conditional",47
+"High potassium result","Nephrology","conditional",47
+"Low sodium result","Nephrology","conditional",47
+"Dialysis-related symptoms","Nephrology","conditional",47
+"Kidney stone prevention visit","Nephrology","conditional",47
+"Leg edema with kidney disease","Nephrology","conditional",47
+"Persistent difficult-to-control BP","Nephrology","conditional",47
+"Kidney disease-related itching","Nephrology","none",38
+"Weak urinary stream","Urology","conditional",47
+"Difficulty emptying bladder","Urology","conditional",47
+"Recurrent urinary infections","Urology","conditional",48
+"Testicular pain","Urology","primary",47
+"Scrotal lump","Urology","conditional",47
+"Erectile difficulty","Urology","conditional",47
+"Penile curvature / pain","Urology","primary",47
+"Elevated PSA consultation","Urology","conditional",47
+"Nighttime urination","Urology","conditional",47
+"Pelvic / perineal discomfort","Urology","primary",47
+"Painful periods","Obstetrics & gynecology","primary",47
+"Heavy menstrual periods","Obstetrics & gynecology","conditional",47
+"Irregular menstrual cycles","Obstetrics & gynecology","conditional",47
+"Hot flashes / menopausal symptoms","Obstetrics & gynecology","none",38
+"Pain with intercourse","Obstetrics & gynecology","primary",47
+"Vulvar itching / irritation","Obstetrics & gynecology","conditional",47
+"Pelvic organ prolapse concern","Obstetrics & gynecology","conditional",47
+"Fertility concern","Obstetrics & gynecology","conditional",47
+"Nausea in pregnancy","Obstetrics & gynecology","conditional",47
+"Postpartum concerns","Obstetrics & gynecology","conditional",47
+"Low blood sugar episodes","Endocrinology","none",38
+"High blood sugar readings","Endocrinology","conditional",47
+"Thyroid nodule concern","Endocrinology","conditional",47
+"Abnormal thyroid test","Endocrinology","none",38
+"Excess facial / body hair","Endocrinology","none",38
+"Milky nipple discharge","Endocrinology","conditional",47
+"Low libido / hormone concern","Endocrinology","none",38
+"Low bone density","Endocrinology","conditional",47
+"High calcium result","Endocrinology","conditional",47
+"Thyroid replacement follow-up","Endocrinology","none",38
+"Eczema flare","Dermatology","conditional",47
+"Psoriasis flare","Dermatology","conditional",47
+"Hives","Dermatology","conditional",47
+"Hair loss patches","Dermatology","conditional",47
+"Fungal nail concern","Dermatology","conditional",47
+"Wart concern","Dermatology","conditional",47
+"Rosacea symptoms","Dermatology","conditional",47
+"Recurrent boils","Dermatology","conditional",47
+"Dandruff / scalp scaling","Dermatology","none",38
+"Contact dermatitis concern","Dermatology","conditional",47
+"Hoarse voice","Otolaryngology","conditional",47
+"Ear fullness / blocked ear","Otolaryngology","conditional",47
+"Ear discharge","Otolaryngology","conditional",47
+"Recurrent nosebleeds","Otolaryngology","conditional",47
+"Loss of smell","Otolaryngology","conditional",47
+"Persistent throat clearing","Otolaryngology","conditional",47
+"Neck lump","Otolaryngology","conditional",47
+"Recurrent tonsil symptoms","Otolaryngology","conditional",47
+"Postnasal drainage","Otolaryngology","conditional",48
+"Jaw pain near ear","Otolaryngology","primary",47
+"Dry / gritty eyes","Ophthalmology","conditional",48
+"Itchy watery eyes","Ophthalmology","conditional",47
+"Eyelid lump","Ophthalmology","conditional",47
+"Eyelid crusting","Ophthalmology","conditional",47
+"Gradual cloudy vision","Ophthalmology","conditional",47
+"Diabetic eye review","Ophthalmology","conditional",47
+"Glaucoma follow-up concern","Ophthalmology","conditional",47
+"Eye strain with near work","Ophthalmology","conditional",48
+"Excessive tearing","Ophthalmology","conditional",47
+"Contact lens discomfort","Ophthalmology","primary",48
+"Poor concentration / ADHD concern","Psychiatry","none",41
+"Obsessions / compulsions","Psychiatry","none",41
+"Trauma-related symptoms","Psychiatry","none",41
+"Elevated mood / reduced sleep","Psychiatry","none",41
+"Alcohol use concern","Psychiatry","none",41
+"Cannabis use concern","Psychiatry","none",41
+"Eating / body image concern","Psychiatry","none",41
+"Grief-related distress","Psychiatry","none",41
+"Medication-related psychiatric symptoms","Psychiatry","none",41
+"Irritability / anger episodes","Psychiatry","none",41
+"Child with ear pain","Pediatrics","primary",47
+"Child with sore throat","Pediatrics","primary",48
+"Child with abdominal pain","Pediatrics","primary",47
+"Child with constipation","Pediatrics","conditional",47
+"Child with bedwetting","Pediatrics","conditional",47
+"Child with headache","Pediatrics","primary",47
+"Child with wheals / hives","Pediatrics","conditional",48
+"Child with limping","Pediatrics","conditional",47
+"Child with school attention concerns","Pediatrics","none",41
+"Infant with excessive crying","Pediatrics","conditional",47
+"Low platelet count","Hematology","conditional",47
+"High platelet count","Hematology","conditional",47
+"Low white blood cell count","Hematology","conditional",47
+"High white blood cell count","Hematology","conditional",47
+"Iron deficiency concern","Hematology","none",38
+"High ferritin result","Hematology","conditional",47
+"High hemoglobin / hematocrit","Hematology","conditional",47
+"Clot follow-up","Hematology","conditional",47
+"Vitamin B12 deficiency concern","Hematology","conditional",47
+"Abnormal protein blood test","Hematology","conditional",47
