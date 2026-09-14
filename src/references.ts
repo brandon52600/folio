@@ -7,6 +7,8 @@ export type ReferenceSheet = {
   description: string;
   sections: { title: string; lines: string[] }[];
   source: { title: string; url: string };
+  additionalSources?: { title: string; url: string }[];
+  layout?: 'labs';
 };
 const interview = {
   title: 'Clinical Methods: The Medical Interview',
@@ -271,6 +273,44 @@ export const referenceSheets: ReferenceSheet[] = [
       },
     ],
   },
+  {
+    id: 'lab-values', title: 'Fishbones & lab values',
+    description: 'Adult CBC, BMP/CMP, electrolytes, and coagulation at a glance.',
+    layout: 'labs',
+    source: { title: 'MedlinePlus: comprehensive metabolic panel', url: 'https://medlineplus.gov/ency/article/003468.htm' },
+    additionalSources: [
+      { title: 'MedlinePlus: CBC', url: 'https://medlineplus.gov/ency/article/003642.htm' },
+      { title: 'MedlinePlus: platelets', url: 'https://medlineplus.gov/ency/article/003647.htm' },
+      { title: 'MedlinePlus: magnesium', url: 'https://medlineplus.gov/ency/article/003487.htm' },
+      { title: 'MedlinePlus: phosphorus', url: 'https://medlineplus.gov/ency/article/003478.htm' },
+      { title: 'MedlinePlus: PT / INR', url: 'https://medlineplus.gov/ency/article/003652.htm' },
+      { title: 'MedlinePlus: PTT', url: 'https://medlineplus.gov/ency/article/003653.htm' },
+    ],
+    sections: [
+      { title: 'CBC', lines: [
+        'WBC | 4.5-11.0 x10^3/mcL', 'Platelets (Plt) | 150-400 x10^3/mcL',
+        'Hemoglobin (Hgb) | F 12-16; M 13-18 g/dL', 'Hematocrit (Hct) | F 36-48; M 40-55 %',
+        'RBC | F 4.2-5.4; M 4.6-6.2 x10^6/mcL', 'MCV | 80-100 fL',
+        'MCH | 27-32 pg/cell', 'MCHC | 32-36 g/dL',
+      ] },
+      { title: 'BMP / chemistry', lines: [
+        'Sodium (Na) | 135-145 mEq/L', 'Potassium (K) | 3.7-5.2 mEq/L',
+        'Chloride (Cl) | 96-106 mEq/L', 'Total CO2 | 23-29 mEq/L',
+        'BUN | 6-20 mg/dL', 'Creatinine (Cr) | 0.6-1.3 mg/dL',
+        'Glucose, fasting | 70-100 mg/dL', 'Calcium, total | 8.5-10.2 mg/dL',
+      ] },
+      { title: 'CMP = BMP + these 6 tests', lines: [
+        'Albumin | 3.4-5.4 g/dL', 'Total protein | 6.0-8.3 g/dL',
+        'ALP | 20-130 U/L', 'ALT | 4-36 U/L', 'AST | 8-33 U/L',
+        'Bilirubin, total | 0.1-1.2 mg/dL',
+      ] },
+      { title: 'Common add-ons (not in CMP)', lines: [
+        'Magnesium | 1.7-2.2 mg/dL', 'Phosphorus | 2.8-4.5 mg/dL',
+        'PT | 11-13.5 seconds', 'INR | 0.8-1.1 (unitless)', 'PTT | 25-35 seconds',
+      ] },
+    ],
+  },
+
 ];
 export async function buildReferencePdf(
   sheet: ReferenceSheet,
@@ -305,6 +345,43 @@ export async function buildReferencePdf(
   text(sheet.title, 42, 74, 23, true);
   text(sheet.description, 42, 97, 9);
   line(113);
+  if (sheet.layout === 'labs') {
+    const segment = (x: number, y: number, x2: number, y2: number) =>
+      ops.push({ kind: 'line', x, y, x2, y2, color: '#284f3e', width: 1 });
+    text('COMMON FISHBONE SHORTHAND', 42, 133, 9, true);
+    text('CBC', 42, 153, 9, true);
+    text('WBC', 47, 190, 10, true); text('Hgb', 113, 176, 10, true);
+    text('Hct', 115, 207, 10, true); text('Plt', 182, 190, 10, true);
+    segment(88, 162, 101, 186); segment(101, 186, 88, 213);
+    segment(101, 186, 164, 186);
+    segment(178, 162, 164, 186); segment(164, 186, 178, 213);
+    const x = width / 2;
+    text('CHEM 7', x, 153, 9, true);
+    ['Na', 'Cl', 'BUN'].forEach((label, i) => text(label, x + i * 51 + 9, 176, 10, true));
+    ['K', 'CO2', 'Cr'].forEach((label, i) => text(label, x + i * 51 + 9, 207, 10, true));
+    segment(x, 186, x + 152, 186);
+    [48, 99].forEach(dx => segment(x + dx, 160, x + dx, 214));
+    segment(x + 152, 160, x + 171, 186); segment(x + 171, 186, x + 152, 214);
+    text('Glucose', x + 176, 190, 9, true);
+    text('Replace labels with results; record units and collection time. Layouts vary by institution.', 42, 234, 8);
+    text('Chem 7 omits calcium. BMP adds calcium; CMP adds the six tests listed below.', 42, 248, 8);
+    text('CO2 is serum total CO2 (mainly bicarbonate), not blood-gas PaCO2.', 42, 262, 8);
+    line(274);
+    const columnWidth = (width - 104) / 2;
+    sheet.sections.forEach((section, index) => {
+      const left = index % 2 === 0 ? 42 : 62 + columnWidth;
+      let rowY = index < 2 ? 296 : 477;
+      text(section.title.toUpperCase(), left, rowY, 9, true);
+      rowY += 23;
+      for (const value of section.lines) { text(value, left, rowY, 8.3); rowY += 17; }
+    });
+    text('Adult examples only; use the reporting laboratory interval. Not pediatric or pregnancy ranges.', 42, 625, 8, true);
+    text('F/M = source female/male intervals; age, hormones, altitude and assay can affect results.', 42, 639, 8);
+    text('PT/INR/PTT intervals assume no anticoagulation; these are not treatment targets.', 42, 653, 8);
+    text('mcL = microliter. Ranges are not diagnostic cutoffs or critical-value thresholds.', 42, 667, 8);
+    text('Sources: MedlinePlus (accessed 14 Sep 2026). Article IDs at medlineplus.gov/ency/article/', 42, height - 104, 7);
+    text('CBC 003642; Plt 003647; Mg 003487; phosphorus 003478; PT/INR 003652; PTT 003653 (.htm).', 42, height - 92, 7);
+  } else {
   let y = 146;
   for (const section of sheet.sections) {
     text(section.title.toUpperCase(), 42, y, 10, true);
@@ -318,7 +395,8 @@ export async function buildReferencePdf(
   text('Notes / questions', 42, y, 10, true);
   line(y + 28);
   line(y + 51);
-  text(
+  }
+  if (sheet.layout !== 'labs') text(
     'Educational reference. Adapt to the encounter, supervision, and local policies.',
     42,
     height - 90,
@@ -333,7 +411,7 @@ export async function buildReferencePdf(
   for (const op of ops) {
     if (op.kind === 'text') {
       const font = op.bold ? bold : regular;
-      if (font.widthOfTextAtSize(op.text, op.size) > width - 84)
+      if (font.widthOfTextAtSize(op.text, op.size) > width - 42 - op.x)
         throw new Error('Reference text exceeds page width');
       page.drawText(op.text, {
         x: op.x,

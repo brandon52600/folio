@@ -123,9 +123,11 @@ export default function ReferenceLibrary({
           <p className="export-hint">
             Print or annotate outside the app. Available offline.
           </p>
-          <a href={selected.source.url} target="_blank" rel="noreferrer">
-            Source: {selected.source.title} ↗
-          </a>
+          {[selected.source, ...(selected.additionalSources || [])].map(source => (
+            <a key={source.url} href={source.url} target="_blank" rel="noreferrer">
+              Source: {source.title} ↗
+            </a>
+          ))}
         </aside>
       </div>
     </section>
