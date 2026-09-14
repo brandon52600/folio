@@ -1,8 +1,8 @@
 import {test} from 'node:test';import assert from 'node:assert/strict';
 import {referenceSheets,buildReferencePdf} from '../src/references.ts';
 import {PDFDocument} from '../src/vendor/pdf-lib.js';
-test('six sourced reference sheets fit a single Letter/A4 page',async()=>{
- assert.equal(referenceSheets.length,6);
+test('seven sourced reference sheets fit a single Letter/A4 page',async()=>{
+ assert.equal(referenceSheets.length,7);
  for(const sheet of referenceSheets)for(const paper of ['US Letter','A4']){
  const result=await buildReferencePdf(sheet,paper);assert.equal((await PDFDocument.load(result.bytes)).getPageCount(),1);
  assert(sheet.source.url.startsWith('https://'));
