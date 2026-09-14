@@ -1,6 +1,6 @@
 # Folio
 
-An installable, offline-capable library of 321 blank clinical templates and six reference sheets. Search by complaint or specialty, preview documents with Quick Look and zoom, and export Letter or A4 PDFs. Every template includes the full HPI outline marked “if applicable.”
+An installable, offline-capable library of 321 blank clinical templates and seven reference sheets. Search by complaint or specialty, preview documents with Quick Look and zoom, and export Letter or A4 PDFs. Every template includes the full HPI outline marked “if applicable.”
 
 No login, patient-note storage, AI creation, API key, or application backend is required.
 
