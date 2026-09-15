@@ -6,7 +6,7 @@ try{
  await page.goto(appUrl);
  await page.getByRole('tab',{name:'Reference sheets',exact:true}).click();
  await page.locator('.reference-grid .specialty-tile').first().waitFor();
- assert.equal(await page.locator('.reference-grid .specialty-tile').count(),7);
+ assert.equal(await page.locator('.reference-grid .specialty-tile').count(),22);
  await page.locator('.reference-grid .specialty-tile').filter({hasText:'SBAR handoff guide'}).click();
  await page.getByRole('img',{name:'SBAR handoff guide reference preview'}).waitFor();
  await page.getByLabel('Reference paper size').selectOption('A4');
@@ -17,6 +17,10 @@ try{
  await page.getByRole('img',{name:'Fishbones & lab values reference preview'}).waitFor();
  const labs=page.waitForEvent('download');await page.getByRole('button',{name:'Download reference PDF'}).click();
  assert.equal((await labs).suggestedFilename(),'folio-reference-lab-values-a4.pdf');
+ await page.locator('.reference-grid .specialty-tile').filter({hasText:'Cardiovascular H&P'}).click();
+ await page.getByRole('img',{name:'Cardiovascular H&P reference preview'}).waitFor();
+ const systemSheet=page.waitForEvent('download');await page.getByRole('button',{name:'Download reference PDF'}).click();
+ assert.equal((await systemSheet).suggestedFilename(),'folio-reference-system-cardio-a4.pdf');
  await page.getByRole('button',{name:'Quick Look: Fishbones & lab values',exact:true}).click();
  await page.getByRole('dialog').waitFor();
  await page.keyboard.press('Escape');
@@ -27,5 +31,5 @@ try{
  await page.getByRole('button',{name:'Download reference PDF'}).waitFor();
  const offline=page.waitForEvent('download');await page.getByRole('button',{name:'Download reference PDF'}).click();assert((await offline).suggestedFilename().includes('reference-hpi'));
  await page.setViewportSize({width:390,height:844});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
- console.log('PASS: tabs, seven sheets, preview, A4 export, template navigation, offline download, mobile width');
+ console.log('PASS: tabs, 22 sheets, system preview, A4 export, template navigation, offline download, mobile width');
 }finally{await browser.close();}
