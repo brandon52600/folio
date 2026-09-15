@@ -1,3 +1,4 @@
+import NoteWorkspace from './NoteWorkspace';
 import QuickLook, { type QuickLookDocument } from './QuickLook';
 import ReferenceLibrary from './ReferenceLibrary';
 import AppInfo from './AppInfo';
@@ -108,7 +109,9 @@ const specialtyIcons = [
 export default function App() {
   const [libraryOpen, setLibraryOpen] = useState(false);
 
-  const [activeTab, setActiveTab] = useState('templates');
+  const [activeTab, setActiveTab] = useState(() => { try { return localStorage.getItem(`folio-vault-v1:${import.meta.env.BASE_URL}`) ? 'notes' : 'templates'; } catch { return 'templates'; } });
+  const [noteRequest, setNoteRequest] = useState<{outlineId:string;nonce:number}|null>(null);
+  function startNote(outlineId:string) { setQuickLook(null); setNoteRequest({outlineId,nonce:Date.now()}); setActiveTab('notes'); window.scrollTo({top:0}); }
   const [quickLook, setQuickLook] = useState<QuickLookDocument | null>(null);
   function goHome() {
     setActiveTab('templates');
@@ -218,7 +221,7 @@ export default function App() {
             <strong>
               {activeTab === 'references'
                 ? 'Reference sheets'
-                : libraryOpen
+                : activeTab === 'notes' ? 'My notes' : libraryOpen
                   ? 'Template library'
                   : 'Choose a specialty'}
             </strong>
@@ -232,7 +235,7 @@ export default function App() {
           role="tablist"
           aria-label="Workspace sections"
         >
-          {['templates', 'references'].map((tab, i) => (
+          {['templates', 'notes', 'references'].map((tab, i) => (
             <button
               key={tab}
               id={`tab-${tab}`}
@@ -246,24 +249,19 @@ export default function App() {
                   ['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(e.key)
                 ) {
                   e.preventDefault();
-                  const next =
-                    e.key === 'Home'
-                      ? 'templates'
-                      : e.key === 'End'
-                        ? 'references'
-                        : i === 0
-                          ? 'references'
-                          : 'templates';
+                  const tabs = ['templates', 'notes', 'references'];
+                  const next = tabs[e.key === 'Home' ? 0 : e.key === 'End' ? 2 : (i + (e.key === 'ArrowLeft' ? 2 : 1)) % 3];
                   setActiveTab(next);
                   document.getElementById(`tab-${next}`)?.focus();
                 }
               }}
             >
-              {tab === 'templates' ? 'Templates' : 'Reference sheets'}
+              {tab === 'templates' ? 'Templates' : tab === 'notes' ? 'My notes' : 'Reference sheets'}
             </button>
           ))}
         </nav>
         <main className="studio-main">
+          <div id="panel-notes" role="tabpanel" aria-labelledby="tab-notes" hidden={activeTab !== 'notes'}><NoteWorkspace active={activeTab === 'notes'} request={noteRequest} onBrowse={() => {setActiveTab('templates');}} /></div>
           <div
             id="panel-references"
             role="tabpanel"
@@ -291,8 +289,8 @@ export default function App() {
                 <p>
                   Choose your specialty, or search for a complaint.
                   <br />
-                  Print your template, or make it your own in your favorite
-                  notes app.
+                  Write directly in a template and save it on this device,
+                  or download a blank PDF.
                 </p>
               </div>
               <div className="hero-stat">
@@ -442,6 +440,7 @@ export default function App() {
                                 prompts <ArrowRight size={13} />
                               </span>
                             </button>
+                            <button className="start-note-card" onClick={() => startNote(o.id)}>Start note</button>
                             <button
                               className="quick-look-trigger"
                               aria-label={`Quick Look: ${o.title}`}
@@ -479,6 +478,7 @@ export default function App() {
                       )}
                     </section>
                     <aside className="template-preview" id="pdf-preview">
+                      <button className="download-button start-note" onClick={() => startNote(selected.id)}>Start note · write in this template</button>
                       <div className="preview-top">
                         <span>
                           <FileText size={16} /> YOUR TEMPLATE
@@ -598,7 +598,7 @@ export default function App() {
         <AppInfo />
         <footer className="studio-footer">
           <span>Folio / thoughtfully structured, freely written.</span>
-          <span>Blank templates only · no clinical data entry</span>
+          <span>Editable notes · encrypted local storage · PDF downloads</span>
         </footer>
       </div>
     </div>

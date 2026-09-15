@@ -16,7 +16,8 @@ export default function AppInfo() {
     let registration: ServiceWorkerRegistration | undefined;
     let active = true;
     let reloading = false;
-    const changed = () => { if (!reloading) { reloading = true; location.reload(); } };
+    let hadController = Boolean(navigator.serviceWorker?.controller);
+    const changed = () => { if (!hadController) { hadController = true; return; } if (!reloading) { reloading = true; location.reload(); } };
     const check = () => { if (!document.hidden) registration?.update().catch(() => {}); };
     if (import.meta.env.PROD && 'serviceWorker' in navigator) {
       navigator.serviceWorker.addEventListener('controllerchange', changed);
@@ -52,10 +53,10 @@ export default function AppInfo() {
     {status && <p role="status">{status}</p>}
     <details><summary>Installation instructions</summary>
       <p>iPhone or iPad: open Folio in Safari, choose Share, then Add to Home Screen. On Android, use your browser menu and choose Install app or Add to Home screen. On a computer, use the install icon or app installation option in your browser.</p>
-      <p>Open the app online once before using it offline. Templates, reference sheets, previews, and PDF exports work offline after setup. Downloaded PDFs stay in your device’s chosen download location.</p>
+      <p>Open the app online once before using it offline. Templates, reference sheets, local notes, previews, and PDF exports work offline after setup. Downloaded PDFs stay in your device’s chosen download location.</p>
     </details>
     <details><summary>About Folio, privacy, and sources</summary>
-      <p>Folio provides 321 blank clinical templates and seven reference sheets. It has no login, AI generation, patient note entry, analytics, or advertising. The app caches its own files on your device for offline use. The website host may keep standard request logs. Source links open external websites with their own policies.</p>
+      <p>Folio provides 321 editable clinical templates and seven reference sheets. Notes are encrypted locally behind a four-digit PIN; there is no cloud account, sync, AI generation, analytics, or advertising. The app caches its own files on your device for offline use. The website host may keep standard request logs. Source links open external websites with their own policies.</p>
       <p>Templates and references include source links. Content is not a validated clinical protocol and may not reflect current guidance. Previously saved AI templates are no longer loaded; any old browser data remains local.</p>
     </details>
     <details open><summary>Educational use and limitation of liability</summary><p>{disclaimer}</p></details>

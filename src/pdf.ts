@@ -1,3 +1,4 @@
+import { needsCareInfo } from './noteModel.ts';
 import { pdfNotice } from './disclaimer.ts';
 import { groupsFor, exposuresFor } from './subjectiveApplicability.ts';
 import {
@@ -227,24 +228,30 @@ export async function buildPdf(
   shortField('Patient name', 151, margin, usable * 0.48);
   shortField('Age', 151, margin + usable * 0.52, usable * 0.18);
   shortField('Gender', 151, margin + usable * 0.74, usable * 0.26);
+  const careInfo = needsCareInfo(outline);
+  const careOffset = careInfo ? 70 : 0;
+  if (careInfo) {
+    shortField('Code status / source / confirmation time', 187);
+    shortField('#1 emergency contact / name / relationship / phone', 222);
+  }
   shortField(
     outline.kind === 'specialty'
       ? 'CC / Visit reason / concerns (patient wording)'
       : 'CC / Chief complaint (patient wording)',
-    194,
+    194 + careOffset,
   );
   text(
     'Complete each section if applicable; leave unrelated fields blank.',
-    margin, 224, 7.5, false, muted,
+    margin, 224 + careOffset, 7.5, false, muted,
   );
   let y = heading(
     outline.kind === 'specialty'
       ? 'HPI / history parameters (if applicable)'
       : 'HPI / history parameters (if applicable)',
-    237,
+    237 + careOffset,
   );
   groupsFor(outline).forEach((group, i) => {
-    const top = y + i * 44;
+    const top = y + i * (careInfo ? 39 : 44);
     text(group.label, margin, top, 8.5, true, accent);
     const fw = (usable - 24) / 3;
     group.fields.forEach((label, j) => {
