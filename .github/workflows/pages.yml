@@ -42,6 +42,7 @@ jobs:
         run: |
           node server.mjs > /tmp/folio-server.log 2>&1 &
           pnpm test:pwa
+          node tests/references-browser.mjs
           node tests/notes-browser.mjs
         env:
           APP_URL: http://127.0.0.1:5173${{ env.BASE_PATH }}
