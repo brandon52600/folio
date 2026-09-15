@@ -1,6 +1,9 @@
 import { pdfNotice } from './disclaimer.ts';
 import { PDFDocument, StandardFonts, rgb } from './vendor/pdf-lib.js';
 import type { PdfResult, DrawOp } from './pdf.ts';
+import { systems } from './catalog.ts';
+import { generalDetails } from './expandedCatalog.ts';
+import { relatedRosBySystem } from './systemReferences.ts';
 export type ReferenceSheet = {
   id: string;
   title: string;
@@ -14,7 +17,7 @@ const interview = {
   title: 'Clinical Methods: The Medical Interview',
   url: 'https://www.ncbi.nlm.nih.gov/books/NBK349/',
 };
-export const referenceSheets: ReferenceSheet[] = [
+const coreReferenceSheets: ReferenceSheet[] = [
   {
     id: 'hpi',
     title: 'HPI quick reference',
@@ -311,6 +314,38 @@ export const referenceSheets: ReferenceSheet[] = [
     ],
   },
 
+];
+
+const pairPrompts = (value: string) => {
+  const labels = value.split('|').slice(0, 10);
+  return Array.from({ length: 5 }, (_, index) =>
+    `Ask: ${labels[index * 2]}; ${labels[index * 2 + 1]}.`,
+  );
+};
+
+const systemReferenceSheets: ReferenceSheet[] = systems.map((system) => {
+  const detail = generalDetails[system.id];
+  const relatedRos = relatedRosBySystem[system.id];
+  if (!detail || !relatedRos) throw new Error(`Missing system reference: ${system.id}`);
+  const exams = detail[2].split('|');
+  const extraExam = system.exam.find((item) => !exams.includes(item));
+  return {
+    id: `system-${system.id}`,
+    title: `${system.name} H&P`,
+    description: 'High-yield HPI, cross-system ROS, and focused exam bullets.',
+    source: system.sources[0],
+    additionalSources: system.sources.slice(1),
+    sections: [
+      { title: 'High-yield HPI questions', lines: pairPrompts(detail[0]) },
+      { title: 'Related ROS / other systems', lines: relatedRos },
+      { title: 'Focused physical examination', lines: [...exams, extraExam || system.exam[0]] },
+    ],
+  };
+});
+
+export const referenceSheets: ReferenceSheet[] = [
+  ...coreReferenceSheets,
+  ...systemReferenceSheets,
 ];
 export async function buildReferencePdf(
   sheet: ReferenceSheet,

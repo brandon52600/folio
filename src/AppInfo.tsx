@@ -56,7 +56,7 @@ export default function AppInfo() {
       <p>Open the app online once before using it offline. Templates, reference sheets, local notes, previews, and PDF exports work offline after setup. Downloaded PDFs stay in your device’s chosen download location.</p>
     </details>
     <details><summary>About Folio, privacy, and sources</summary>
-      <p>Folio provides 321 editable clinical templates and seven reference sheets. Notes are encrypted locally behind a four-digit PIN; there is no cloud account, sync, AI generation, analytics, or advertising. The app caches its own files on your device for offline use. The website host may keep standard request logs. Source links open external websites with their own policies.</p>
+      <p>Folio provides 321 editable clinical templates and 22 reference sheets, including one concise H&amp;P guide for every system. Notes are encrypted locally behind a four-digit PIN; there is no cloud account, sync, AI generation, analytics, or advertising. The app caches its own files on your device for offline use. The website host may keep standard request logs. Source links open external websites with their own policies.</p>
       <p>Templates and references include source links. Content is not a validated clinical protocol and may not reflect current guidance. Previously saved AI templates are no longer loaded; any old browser data remains local.</p>
     </details>
     <details open><summary>Educational use and limitation of liability</summary><p>{disclaimer}</p></details>

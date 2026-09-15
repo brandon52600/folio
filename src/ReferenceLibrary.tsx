@@ -48,7 +48,7 @@ export default function ReferenceLibrary({
         <div>
           <div className="eyebrow">KEEP THE ESSENTIALS CLOSE</div>
           <h1>Reference sheets</h1>
-          <p>Quick guides to read, print, or keep in your notes app.</p>
+          <p>Quick guides plus one high-yield H&amp;P sheet for every system.</p>
         </div>
       </div>
       <div className="studio-columns">
