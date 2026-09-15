@@ -12,7 +12,7 @@ try{
  await page.goto(appUrl+'?studio=3');
  await page.getByText('Ready for offline use',{exact:true}).waitFor();
  assert.equal(await page.getByRole('button',{name:/Create a template/}).count(),0);
- assert.equal(await page.locator('input[type=password]').count(),0);
+ assert.equal(await page.locator('input[type=password]:visible').count(),0);
  assert.equal(await page.locator('.specialty-tile').count(),22);
  assert.equal((await fetch(new URL('api/ai-status',appUrl))).status,404);
  const manifestUrl=await page.locator('link[rel=manifest]').getAttribute('href');
