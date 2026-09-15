@@ -1,8 +1,10 @@
 # Folio
 
-An installable, offline-capable library of 321 blank clinical templates and seven reference sheets. Search by complaint or specialty, preview documents with Quick Look and zoom, and export Letter or A4 PDFs. Every template includes the full HPI outline marked “if applicable.”
+An installable, offline-capable library of 321 editable clinical templates and seven reference sheets. Search by complaint or specialty, preview documents with Quick Look and zoom, and export Letter or A4 PDFs. Every template includes the full HPI outline marked “if applicable.”
 
-No login, patient-note storage, AI creation, API key, or application backend is required.
+Write notes directly in the document using text fields, status dropdowns, checkboxes, and a pain slider. Blank PDFs remain downloadable. My notes stores encrypted local notes behind a four-digit PIN; no cloud account, sync, API key, or backend is required.
+
+The vault uses AES-GCM and PBKDF2, locks when the tab is hidden or after five minutes idle, and opens in one tab at a time. A four-digit PIN has only 10,000 possibilities: this is a convenience lock, not strong protection against offline guessing or a validated clinical record system. No PIN recovery is available. Keep encrypted backups; clearing browser data removes notes. Restore backups into a browser with no existing vault using the original PIN. Downloaded PDFs are not encrypted. Use only where your organization permits local clinical notes.
 
 ## Run locally
 
@@ -47,7 +49,7 @@ The manifest includes standard and maskable icons, an Apple touch icon, a scoped
 
 ## Privacy and educational use
 
-Folio does not collect patient notes, require accounts, call an AI service, or include analytics. It caches its own files on the device. The host may retain ordinary request logs. External source links have their own policies. Older locally saved AI drafts are no longer loaded; they are not uploaded or deleted automatically.
+Folio does not transmit patient notes, require cloud accounts, call an AI service, or include analytics. It stores encrypted notes and caches its own files on the device. The host may retain ordinary request logs. External source links have their own policies. Older locally saved AI drafts are no longer loaded; they are not uploaded or deleted automatically.
 
 Folio and its documents are guides/templates only, not medical advice or validated clinical protocols. Content may contain inaccuracies, omissions, or outdated information. Users must independently verify it against current authoritative sources, local policy, and professional judgment. To the fullest extent permitted by law, the creator and contributors disclaim warranties and liability for inaccuracies, omissions, or losses arising from use. Nothing excludes liability that cannot legally be excluded. The app displays this notice and every exported PDF includes a concise version. A disclaimer does not guarantee protection from legal claims.
 
