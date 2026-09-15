@@ -1,6 +1,6 @@
 # Folio
 
-An installable, offline-capable library of 321 editable clinical templates and seven reference sheets. Search by complaint or specialty, preview documents with Quick Look and zoom, and export Letter or A4 PDFs. Every template includes the full HPI outline marked “if applicable.”
+An installable, offline-capable library of 321 editable clinical templates and 22 reference sheets, including one high-yield HPI, cross-system ROS, and focused-exam guide for each clinical system. Search by complaint or specialty, preview documents with Quick Look and zoom, and export Letter or A4 PDFs. Every template includes the full HPI outline marked “if applicable.”
 
 Write notes directly in the document using text fields, status dropdowns, checkboxes, and a pain slider. Blank PDFs remain downloadable. My notes stores encrypted local notes behind a four-digit PIN; no cloud account, sync, API key, or backend is required.
 
